@@ -13,6 +13,7 @@ public class Canva extends JPanel {
     private final ArrayList<Point> pointsOfPolygon = new ArrayList<>();
     private int counter = 0;
 
+
     private boolean isEnabledToRotate = false;
     private boolean isEnabledToScale = false;
     private boolean isEnabledToTranslate = true;
@@ -25,6 +26,7 @@ public class Canva extends JPanel {
 
     private final JButton execute = new JButton();
     private final JButton addPoint = new JButton();
+    private final JButton resetButton = new JButton();
 
     private final JButton startButton = new JButton();
     private final JSlider numberOfPoints = new JSlider(3,20);
@@ -236,7 +238,9 @@ public class Canva extends JPanel {
         startButton.setBounds(900,650,90,25);
         startButton.setText("Start");
         numberOfPoints.setBounds(885,700,120,25);
-
+        resetButton.setBounds(900,500,90,25);
+        resetButton.setText("Reset");
+        resetButton.addActionListener(e-> reset());
         execute.setBounds(900,550,90,25);
         execute.addActionListener(e-> executeAction());
         addPoint.setBounds(900,600,90,25);
@@ -254,6 +258,24 @@ public class Canva extends JPanel {
         this.add(translateButton);
         this.add(angleButton);
         this.add(scaleButton);
+        this.add(resetButton);
+
+    }
+
+    private void reset() {
+         isAllowedToDraw = false;
+          pointsOfPolygon.clear();
+
+         isEnabledToRotate = false;
+         isEnabledToScale = false;
+        isEnabledToTranslate = true;
+
+         prevPoint = new Point(0,0);
+
+         isAddingPointEnabled =false;
+
+         relative = new Point(-5,-5);
+
 
     }
 
